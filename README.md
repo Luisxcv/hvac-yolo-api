@@ -88,7 +88,44 @@ source venv/bin/activate       # On Linux/Mac
 pip install -r requirements.txt
 ```
 
----
+
+### 4️. Run with Docker
+You can run this project fully containerized:
+
+```bash
+# Build the Docker image
+docker compose build
+# Start the container and API server
+docker compose up
+```
+
+Then open:
+
+http://localhost:8000
+ → API root
+
+http://localhost:8000/docs
+ → Interactive Swagger UI
+
+## Model Training
+
+To retrain the model with your dataset, run:
+
+```bash
+python src/train.py
+```
+
+or use the provided notebook in Google Colab:
+```bash
+Upload and execute src/train.ipynb
+```
+
+The trained weights will be saved automatically in:
+```bash
+models/final/best.pt
+```
+Make sure your dataset structure matches YOLO format (train/, val/, data.yaml).
+
 
 ## Local Inference Mode
 
