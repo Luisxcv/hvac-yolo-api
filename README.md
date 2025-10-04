@@ -148,13 +148,13 @@ flowchart TD
         API -->|GET /predict/camera| CameraHandler[Camera Stream Endpoint]
     end
 
-    FileHandler -->|Image / Video| Inference[Inference Engine (inference.py)]
+    FileHandler -->|Image / Video| Inference[Inference Engine - inference.py]
     CameraHandler -->|Live Frames| Inference
 
     subgraph Backends["Automatic Backend Selector"]
-        Inference -->|Auto-detect hardware| Torch[TorchBackend (CUDA)]
-        Inference -->|Fallback| OpenVINO[OpenVINOBackend (Intel CPU/GPU)]
-        Inference -->|Fallback| NCNN[NCNNBackend (Vulkan / CPU)]
+        Inference -->|Auto-detect hardware| Torch[TorchBackend - CUDA]
+        Inference -->|Fallback| OpenVINO[OpenVINOBackend - Intel CPU/GPU]
+        Inference -->|Fallback| NCNN[NCNNBackend - Vulkan/CPU]
     end
 
     Torch --> Drawing[Draw Bounding Boxes & Labels]
@@ -177,8 +177,8 @@ flowchart LR
     Dataset[Dataset Preparation] -->|Data cleaning & augmentation| Training[Model Training]
     Training -->|YOLOv11 variants| Model[Trained Model - best.pt]
 
-    Model -->|Export to OpenVINO| OpenVINO[(OpenVINO)]
-    Model -->|Export to NCNN| NCNN[(NCNN)]
+    Model -->|Export to OpenVINO| OpenVINO[OpenVINO]
+    Model -->|Export to NCNN| NCNN[NCNN]
 
     subgraph Backends["Automatic Backend Selector"]
         OpenVINO --> Inference
@@ -186,10 +186,10 @@ flowchart LR
     end
 
     Inference[inference.py + api.py] --> API[FastAPI REST Interface]
-    API --> Upload[User Uploads (Image / Video / Camera)]
+    API --> Upload[User Uploads - Image/Video/Camera]
     Upload --> YOLO[YOLOv11 Inference Engine]
-    YOLO --> Results[Results + Metrics (FPS, Inference Time)]
-    YOLO --> Outputs[Annotated Outputs (Videos / Images)]
+    YOLO --> Results[Results + Metrics - FPS, Inference Time]
+    YOLO --> Outputs[Annotated Outputs - Videos / Images]
     Outputs -->|GET /download/{filename}| User[User Download]
 ```
 
