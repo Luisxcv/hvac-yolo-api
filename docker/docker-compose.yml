@@ -1,0 +1,13 @@
+services:
+  hvac_yolo_api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: hvac_yolo_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../results:/app/results
+      - ../uploads
+      - ../models:/app/models
+    restart: unless-stopped

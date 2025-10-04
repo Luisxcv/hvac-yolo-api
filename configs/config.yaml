@@ -1,0 +1,93 @@
+# ==========================================================
+# HVAC_YOLO Configuration File
+# ==========================================================
+# Author: Camilo Cárcamo
+# Project: HVAC Equipment Detection using YOLOv11
+# Version: 1.0
+# Date: 2025-10-03
+# ==========================================================
+
+project:
+  name: "HVAC_YOLO"
+  description: "Automatic HVAC equipment detection using YOLOv11 and multi-backend deployment (NCNN, OpenVINO, TensorRT, Coral)."
+  version: "1.0"
+  author: "Camilo Cárcamo"
+
+# =========================================================
+# PATHS
+# =========================================================
+paths:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  data_annotated: "data/annotated"
+  models_dir: "models/final"
+  results_dir: "results"
+  outputs_dir: "results/sample_outputs"
+  metrics_file: "results/metrics.json"
+
+# =========================================================
+# TRAINING PARAMETERS
+# =========================================================
+training:
+  model: "yolov11n.pt"              # Base model for transfer learning
+  epochs: 100
+  img_size: 640
+  data_yaml: "configs/dataset.yaml" # YOLO dataset definitions
+  device: "auto"                    # auto-detect CUDA, MPS, or CPU
+  augmentations:
+    brightness: 1.5
+    blur: 4
+    noise: 0.005
+    rotation: 10
+
+# ==========================================================
+# INFERENCE SETTINGS
+# ==========================================================
+inference:
+  confidence_threshold: 0.45
+  iou_threshold: 0.5
+  image_size: 640
+  save_results: true
+  draw_labels: true
+  backend_priority: ["CUDA", "OpenVINO", "NCNN"]
+  use_vulkan: true
+  auto_select_model: true
+  supported_formats:
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+    - ".mp4"
+    - ".avi"
+    - ".mov"
+
+# ==========================================================
+# MODEL EXPORT PATHS
+# ==========================================================
+models:
+  pytorch: "models/final/best.pt"
+  openvino: "models/final/best_openvino_model/"
+  onnx: "models/final/best.onnx"
+  ncnn: "models/final/best_ncnn_model/"
+  coral: "models/final/best_saved_model/"
+  default: "models/final/best.pt"
+
+# ==========================================================
+# API CONFIGURATION
+# ==========================================================
+api:
+  host: "0.0.0.0"
+  port: 8000
+  title: "HVAC Detector API"
+  description: "REST API for automatic detection of HVAC systems using YOLOv11"
+  version: "1.0"
+
+# ==========================================================
+# LOGGING & METRICS
+# ==========================================================
+logging:
+  log_level: "INFO"
+  save_metrics: true
+  metrics_path: "results/metrics.json"
+  save_video: true
+  show_fps: true
+  show_inference_time: true

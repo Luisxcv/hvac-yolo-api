@@ -1,0 +1,34 @@
+Edge TPU Compiler version 16.0.384591198
+Input: /content/runs/detect/train/weights/best_saved_model/best_full_integer_quant.tflite
+Output: /content/runs/detect/train/weights/best_saved_model/best_full_integer_quant_edgetpu.tflite
+
+Operator                       Count      Status
+
+SPLIT                          1          More than one subgraph is not supported
+PAD                            5          Mapped to Edge TPU
+PAD                            2          More than one subgraph is not supported
+TRANSPOSE                      1          More than one subgraph is not supported
+TRANSPOSE                      6          Operation is otherwise supported, but not mapped due to some unspecified limitation
+LOGISTIC                       44         More than one subgraph is not supported
+LOGISTIC                       34         Mapped to Edge TPU
+DEPTHWISE_CONV_2D              6          More than one subgraph is not supported
+RESIZE_NEAREST_NEIGHBOR        2          More than one subgraph is not supported
+MUL                            34         Mapped to Edge TPU
+MUL                            46         More than one subgraph is not supported
+CONV_2D                        302        More than one subgraph is not supported
+CONV_2D                        35         Mapped to Edge TPU
+BATCH_MATMUL                   2          More than one subgraph is not supported
+RESHAPE                        7          More than one subgraph is not supported
+RESHAPE                        2          Operation is otherwise supported, but not mapped due to some unspecified limitation
+MAX_POOL_2D                    3          Mapped to Edge TPU
+CONCATENATION                  1          Operation is otherwise supported, but not mapped due to some unspecified limitation
+CONCATENATION                  15         More than one subgraph is not supported
+CONCATENATION                  7          Mapped to Edge TPU
+SUB                            2          More than one subgraph is not supported
+QUANTIZE                       3          More than one subgraph is not supported
+STRIDED_SLICE                  2          Operation is otherwise supported, but not mapped due to some unspecified limitation
+STRIDED_SLICE                  13         More than one subgraph is not supported
+STRIDED_SLICE                  10         Mapped to Edge TPU
+SOFTMAX                        2          More than one subgraph is not supported
+ADD                            6          Mapped to Edge TPU
+ADD                            11         More than one subgraph is not supported

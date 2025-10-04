@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 3
+names: ['GRAVITY-VENT', 'RTU', 'SPLIT-SYSTEM']
+
+roboflow:
+  workspace: hvac-hbzel
+  project: hvac_8_class-lfhrn
+  version: 4
+  license: Private
+  url: https://app.roboflow.com/hvac-hbzel/hvac_8_class-lfhrn/4
