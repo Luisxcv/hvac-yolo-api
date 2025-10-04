@@ -164,7 +164,7 @@ flowchart TD
     Drawing -->|Save annotated output| Outputs[results/sample_outputs/]
     Drawing -->|Save metrics| Metrics[results/metrics.json]
 
-    Outputs -->|GET /download/{filename}| User
+    Outputs -->|GET /download/filename| User
     Metrics -->|Performance summary (FPS, inference time)| User
 ```
 
@@ -190,7 +190,7 @@ flowchart LR
     Upload --> YOLO[YOLOv11 Inference Engine]
     YOLO --> Results[Results + Metrics - FPS, Inference Time]
     YOLO --> Outputs[Annotated Outputs - Videos / Images]
-    Outputs -->|GET /download/{filename}| User[User Download]
+    Outputs -->|GET /download/filename| User[User Download]
 ```
 
 ---
