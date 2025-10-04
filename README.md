@@ -165,7 +165,7 @@ flowchart TD
     Drawing -->|Save metrics| Metrics[results/metrics.json]
 
     Outputs -->|GET /download/filename| User
-    Metrics -->|Performance summary (FPS, inference time)| User
+    Metrics -->|Performance summary - FPS & inference time| User
 ```
 
 ---
