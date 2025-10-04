@@ -14,6 +14,7 @@ It includes both a **local interactive mode** (console) and a **REST API** for r
 - [API Endpoints Overview](#-api-endpoints-overview)
 - [System Flow Diagram](#-system-flow-diagram)
 - [End-to-End Pipeline](#-end-to-end-pipeline)
+- [Model Card](#-model-card)
 - [API Architecture Overview](#-api-architecture-overview)
 - [Performance Metrics](#-performance-metrics)
 - [Future Improvements](#-future-improvements)
@@ -55,7 +56,7 @@ HVAC_YOLO/
 ├── configs/
 │   └── config.yaml                # Configuration
 │
-├── test/                          # Basic tests
+├── DEMO/                          # Demostration videos + Reports (json)
 │
 ├── results/
 │   ├── sample_outputs/            # Example detections
@@ -193,6 +194,34 @@ flowchart LR
     Outputs -->|GET /download/filename| User[User Download]
 ```
 
+## Model Card
+
+**Model Name:** HVAC_YOLOv11  
+**Architecture:** YOLOv11 (Ultralytics, 2024)  
+**Purpose:** Automatic detection and classification of HVAC systems (RTU, Split, Chiller, Condenser, etc.) from images and videos.  
+**Dataset:** Custom HVAC dataset with 3 equipment classes (collected and labeled via Roboflow).  
+**Input Size:** 640 × 640  
+**Training Epochs:** 100
+**Framework:** PyTorch + Ultralytics YOLOv11  
+**Export Formats:**  
+- PyTorch (`best.pt`)  
+- OpenVINO (for Intel CPU/GPU inference)  
+- NCNN (for lightweight devices)  
+
+**Performance Metrics:**  
+| Metric | Value |
+|--------|--------|
+| mAP@50 | **0.798** |
+| Precision | **0.98** |
+| Recall | **0.85** |
+| F1 all@0.37 | **0.78** |
+| Inference Speed (OpenVINO) | **30 FPS** on Intel Iris Xe |
+
+**Intended Use:**  
+Industrial automation and HVAC asset monitoring — to assist in identifying HVAC units in rooftop or field environments.  
+
+**Limitations:**  
+Performance may vary with unseen lighting conditions or new equipment types not present in the training dataset.
 ---
 
 ## API Architecture Overview
@@ -238,7 +267,7 @@ Example:
 ```
 
 Target performance: **≥20 FPS @ 720p**  
-Achieved @ Yolov11n: **~45 FPS (OpenVINO, Intel Iris Xe)**
+Achieved @ Yolov11n: **~45 FPS (OpenVINO, Intel Iris Xe)**<br>
 Achieved @ Yolov11s: **~30 FPS (OpenVINO, Intel Iris Xe)**
 ---
 

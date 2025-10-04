@@ -1,0 +1,11 @@
+[
+    {
+        "mode": "video",
+        "device": "OpenVINO",
+        "file": "C:/Users/Xam/OneDrive/Escritorio/VID-20250916-WA0004.mp4",
+        "frames": 903,
+        "resolution": "464x832",
+        "avg_fps": 32.89184812102672,
+        "avg_inference_time_ms": 26.57025448506033
+    }
+]

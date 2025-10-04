@@ -7,10 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1lPqH0jrVaohy-fd8H0p3BSiUTcq4xXLx
 """
 
-import os
-HOME = os.getcwd()
-print(HOME)
-
 !pip install ultralytics
 
 from IPython import display
@@ -22,29 +18,31 @@ ultralytics.checks()
 from ultralytics import YOLO
 from IPython.display import display, Image
 
-#!mkdir {HOME}/datasets
-#%cd {HOME}/datasets
-
 !pip install roboflow
 
 from roboflow import Roboflow
 rf = Roboflow(api_key="0v0beAZlQEiGhgXI7uz5")
 project = rf.workspace("hvac-hbzel").project("hvac_8_class-lfhrn")
-version = project.version(1)
+version = project.version(4)
 dataset = version.download("yolov11")
 
-!yolo task=detect mode=train model=yolo11s.pt data=/content/HVAC_8_CLASS-1/data.yaml epochs=100 imgsz=640 plots=True
+!yolo task=detect mode=train model=yolo11s.pt data=/content/HVAC_8_CLASS-4/data.yaml epochs=100 imgsz=640 plots=True
 
-# Carga el archivo best.pt de la carpeta runs
+# Load best.pt frile from runs folder
 model = YOLO("/content/runs/detect/train/weights/best.pt")
-# Export the model to NCNN format
+# Export the model to NCNN format (might be helpful)
 model.export(format="ncnn", imgsz=640)
 
+# Also we can use quantization (int8) for Google Coral TPU for example
+model.export(format="edgetpu", imgsz=640)
+# I don't have an Nvidia graphic card but I do count with an Intel Iris Xe
+model.export(format="openvino",imgsz=640)
+
 # Zip the project
-!zip -r hvac_project.zip HVAC_8_CLASS-1 runs
-# Then download
+!zip -r hvac_project_small.zip HVAC_8_CLASS-1 runs
+# Good to go!
 from google.colab import files
-files.download("hvac_project.zip")
+files.download("hvac_project_small.zip")
 
 """#UPLOAD SOME VIDEOS TO TEST HERE"""
 
