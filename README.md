@@ -259,6 +259,9 @@ Industrial automation and HVAC asset monitoring — to assist in identifying HVA
 
 **Limitations:**  
 Performance may vary with unseen lighting conditions or new equipment types not present in the training dataset.
+
+**You can download the trained weights from heere as well**  
+https://drive.google.com/drive/folders/1YOf2pH2CKnbWCCOHNBr500WetnxGjDAL?usp=sharing
 ---
 
 ## API Architecture Overview
