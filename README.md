@@ -141,7 +141,7 @@ Then open:
 
 ```mermaid
 flowchart TD
-    User[User / Client] -->|HTTP Request| API[FastAPI Server (api.py)]
+    User[User / Client] -->|HTTP Request| API[FastAPI Server - api]
 
     subgraph FastAPI["FastAPI Application"]
         API -->|POST /predict/file| FileHandler[File Upload Endpoint]
@@ -175,7 +175,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     Dataset[Dataset Preparation] -->|Data cleaning & augmentation| Training[Model Training]
-    Training -->|YOLOv11 (n/s/m/l)| Model[Trained Model (best.pt)]
+    Training -->|YOLOv11 variants| Model[Trained Model - best.pt]
 
     Model -->|Export to OpenVINO| OpenVINO[(OpenVINO)]
     Model -->|Export to NCNN| NCNN[(NCNN)]
@@ -238,8 +238,8 @@ Example:
 ```
 
 Target performance: **≥20 FPS @ 720p**  
-Achieved: **~45 FPS (OpenVINO, Intel Iris Xe) when using Yolov11n**
-          **~ FPS (OpenVINO, Intel Iris Xe) when using Yolov11s**
+Achieved @ Yolov11n: **~45 FPS (OpenVINO, Intel Iris Xe)**
+Achieved @ Yolov11s: **~30 FPS (OpenVINO, Intel Iris Xe)**
 ---
 
 ## Future Improvements
@@ -255,6 +255,6 @@ Achieved: **~45 FPS (OpenVINO, Intel Iris Xe) when using Yolov11n**
 
 **Camilo Carcamo**  
 AI Developer & Mechatronics Engineer
-📍 Lima, Peru  
-📧 [lc.carcamo@hotmail.com]
+📍 Lima, Peru<br>
+📧 [lc.carcamo@hotmail.com]<br>
 🧾 Project developed as part of HVAC AI detection assignment (2025)
