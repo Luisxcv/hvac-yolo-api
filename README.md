@@ -49,6 +49,11 @@ HVAC_YOLO/
 │   ├── train.ipynb                # Upload it to Colab and run!
 │   └── api.py                     # FastAPI REST server
 │
+├── tests/
+│    ├── __init__.py
+│    └── test_train.py             # Unit tests (mocked YOLO)
+│
+│
 ├── docker/
 │   ├── Dockerfile                 # Container definition
 │   └── docker-compose.yml
@@ -109,13 +114,28 @@ http://localhost:8000/docs
 
 ## Model Training
 
-To retrain the model with your dataset, run:
+To retrain the model locally or on any environment:
 
 ```bash
 python src/train.py
 ```
+The script will automatically download the dataset from Roboflow using your API key, train Yolov11 on your CPU or GPU (auto-detected), then save metrics and per-class performance reports, and finally export the model to mutiple formats (NCNN, OpenVino, EdgeTPU).
 
-or use the provided notebook in Google Colab:
+Make sure to create a .env file with your Roboflow API key: <br>
+```bash
+ROBOFLOW_KEY=your_api_key_here
+```
+
+You can also customize the training process using CLI arguments:
+```bash
+python src/train.py --epochs 150 --model yolo11m.pt --imgsz 512 --device cuda
+```
+After training, all results and weights are saved automatically in: <br>
+runs/train/hvac_yolov11/
+results/train_metrics.json
+results/per_class_metrics.json
+
+Alternatively, use the provided notebook in Google Colab:
 ```bash
 Upload and execute src/train.ipynb
 ```
@@ -126,6 +146,14 @@ models/final/best.pt
 ```
 Make sure your dataset structure matches YOLO format (train/, val/, data.yaml).
 
+## Testing
+
+Basic unit tests are provided to validate the training and export functions without requiring GPU or dataset downloads.
+
+Run all tests with:
+```bash
+pytest -v
+```
 
 ## Local Inference Mode
 

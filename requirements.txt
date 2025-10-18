@@ -7,3 +7,6 @@ python-multipart==0.0.9
 openvino==2024.3.0
 matplotlib>=3.10.0
 numpy>=1.24.0
+python-dotenv
+pyyaml
+pytest

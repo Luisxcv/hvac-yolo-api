@@ -1,11 +1,11 @@
-# ==========================================================
-# HVAC_YOLO Configuration File
-# ==========================================================
-# Author: Camilo Cárcamo
-# Project: HVAC Equipment Detection using YOLOv11
-# Version: 1.0
-# Date: 2025-10-03
-# ==========================================================
+# =================================================#
+# HVAC_YOLO Configuration File                     #
+# =================================================#
+# Author: Camilo Cárcamo                           #
+# Project: HVAC Equipment Detection using YOLOv11  #
+# Version: 1.0                                     #
+# Date: 2025-10-03                                 #
+# =================================================#
 
 project:
   name: "HVAC_YOLO"
@@ -13,9 +13,9 @@ project:
   version: "1.0"
   author: "Camilo Cárcamo"
 
-# =========================================================
-# PATHS
-# =========================================================
+# ======================#
+#        PATHS          #
+# ======================#
 paths:
   data_raw: "data/raw"
   data_processed: "data/processed"
@@ -25,9 +25,9 @@ paths:
   outputs_dir: "results/sample_outputs"
   metrics_file: "results/metrics.json"
 
-# =========================================================
-# TRAINING PARAMETERS
-# =========================================================
+# ============================#
+#      TRAINING PARAMETERS    #
+# ============================#
 training:
   model: "yolov11n.pt"              # Base model for transfer learning
   epochs: 100
@@ -40,9 +40,9 @@ training:
     noise: 0.005
     rotation: 10
 
-# ==========================================================
-# INFERENCE SETTINGS
-# ==========================================================
+# ==========================#
+#     INFERENCE SETTINGS    #
+# ==========================#
 inference:
   confidence_threshold: 0.45
   iou_threshold: 0.5
@@ -60,9 +60,9 @@ inference:
     - ".avi"
     - ".mov"
 
-# ==========================================================
-# MODEL EXPORT PATHS
-# ==========================================================
+# ===============================#
+#      MODEL EXPORT PATHS        #
+# ===============================#
 models:
   pytorch: "models/final/best.pt"
   openvino: "models/final/best_openvino_model/"
@@ -71,9 +71,9 @@ models:
   coral: "models/final/best_saved_model/"
   default: "models/final/best.pt"
 
-# ==========================================================
-# API CONFIGURATION
-# ==========================================================
+# ==============================#
+#       API CONFIGURATION       #
+# ==============================#
 api:
   host: "0.0.0.0"
   port: 8000
@@ -81,9 +81,9 @@ api:
   description: "REST API for automatic detection of HVAC systems using YOLOv11"
   version: "1.0"
 
-# ==========================================================
-# LOGGING & METRICS
-# ==========================================================
+# ===============================#
+#         LOGGING & METRICS      # 
+# ===============================#
 logging:
   log_level: "INFO"
   save_metrics: true
